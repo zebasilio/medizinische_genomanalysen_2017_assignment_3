@@ -12,14 +12,17 @@ Return the total number of identified variants in the father:
 
 +++++++++++++++++++
 Return the number of identified variants shared by father and son:
-13
+30142
 
 +++++++++++++++++++
 Return the number of identified variants shared by mother and son:
-0
+30216
 
 +++++++++++++++++++
 Return the number of identified variants shared by father, mother and son:
-0
-merged files
+22533
+
++++++++++++++++++++
+Creates one VCF containing all variants of the trio (merge VCFs):
+merge files ok
 do not know how to do it

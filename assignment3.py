@@ -25,11 +25,6 @@ class Assignment3:
         ## Check if hgvs is installed
         print "HGVS version: %s" % hgvs.__version__
 
-        ## Reader for the 3 vcf files: makes the procedure faster when geting the shared variants
-
-	self.mother = vcf.Reader(open('AmpliseqExome.20141120.NA24143.vcf', 'r'))
-        self.father = vcf.Reader(open('AmpliseqExome.20141120.NA24149.vcf', 'r'))
-        self.son = vcf.Reader(open('AmpliseqExome.20141120.NA24385.vcf', 'r'))
 
     def get_total_number_of_variants_mother(self):
         print "\n+++++++++++++++++++\nReturn the total number of identified variants in the mother:"
@@ -52,8 +47,9 @@ class Assignment3:
     def get_variants_shared_by_father_and_son(self):
        print "\n+++++++++++++++++++\nReturn the number of identified variants shared by father and son:"
        count = 0
-       for line in self.father:
-           if line in self.son:
+       lines = utils.walk_together(vcf.Reader(open(file_father, "r")), vcf.Reader(open(file_son, "r")))
+       for entry in lines:
+           if not entry[0] is None and not entry[1] is None:
                count += 1
        print count
        return count
@@ -62,8 +58,9 @@ class Assignment3:
     def get_variants_shared_by_mother_and_son(self):
         print "\n+++++++++++++++++++\nReturn the number of identified variants shared by mother and son:"
         count = 0
-        for line in self.mother:
-           if line in self.son:
+        lines = utils.walk_together(vcf.Reader(open(file_mother, "r")), vcf.Reader(open(file_son, "r")))
+        for entry in lines:
+           if not entry[0] is None and not entry[1] is None:
                count += 1
         print count
         return count
@@ -71,25 +68,25 @@ class Assignment3:
     def get_variants_shared_by_trio(self):
         print "\n+++++++++++++++++++\nReturn the number of identified variants shared by father, mother and son:"
         count = 0
-        for line in self.father:
-	   if line in self.mother and line in self.son:
-	       count += 1
+        lines = utils.walk_together(vcf.Reader(open(file_mother, "r")), vcf.Reader(open(file_father, "r")), vcf.Reader(open(file_son, "r")))
+        for entry in lines:
+           if not entry[0] is None and not entry[1] is None and not entry[2] is None:
+               count += 1
         print count
         return count
         
 
     def merge_mother_father_son_into_one_vcf(self):
-        '''
-        Creates one VCF containing all variants of the trio (merge VCFs)
-        :return: 
-        '''
+        
+        print "\n+++++++++++++++++++\nCreates one VCF containing all variants of the trio (merge VCFs):"
+       
         merge = open ("merge.vcf", "w")
         writer = vcf.Writer(merge, vcf.Reader(open(file_mother, "r")), "\n")
         for lines in utils.walk_together(vcf.Reader(open(file_mother, "r")), vcf.Reader(open(file_father, "r")), vcf.Reader(open(file_son, "r"))):
             for entry in lines:
                 if entry is not None:
                     writer.write_record(entry)
-        print "merged files"
+        print "merge files ok"
         
         
     def convert_first_variants_of_son_into_HGVS(self):
