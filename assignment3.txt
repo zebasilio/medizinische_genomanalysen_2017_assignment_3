@@ -1,0 +1,25 @@
+Assignment 3
+PyVCF version: 0.6.8
+HGVS version: 0.4.13
+
++++++++++++++++++++
+Return the total number of identified variants in the mother:
+38693
+
++++++++++++++++++++
+Return the total number of identified variants in the father:
+38641
+
++++++++++++++++++++
+Return the number of identified variants shared by father and son:
+13
+
++++++++++++++++++++
+Return the number of identified variants shared by mother and son:
+0
+
++++++++++++++++++++
+Return the number of identified variants shared by father, mother and son:
+0
+merged files
+do not know how to do it
