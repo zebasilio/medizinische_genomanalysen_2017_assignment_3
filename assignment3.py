@@ -4,7 +4,9 @@
 Before running the script, change the path of the vcf files in the files variable (line 16, 17 and 18)
 to run the script, in the command line:
 $chmod +x assignment3.py
-$./assignment3.py > assignment3.txt
+$./assignment3.py
+
+The output is saved in assignment3.txt
 '''
 
 import vcf
