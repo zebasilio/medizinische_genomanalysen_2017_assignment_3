@@ -25,4 +25,7 @@ Return the number of identified variants shared by father, mother and son:
 +++++++++++++++++++
 Creates one VCF containing all variants of the trio (merge VCFs):
 merge files ok
+
++++++++++++++++++++
+convert_first_variants_of_son_into_HGVS:
 do not know how to do it

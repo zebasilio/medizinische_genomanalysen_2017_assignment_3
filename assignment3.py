@@ -96,6 +96,7 @@ class Assignment3:
         - https://hgvs.readthedocs.io/en/master/examples/manuscript-example.html#project-genomic-variant-to-a-new-transcript
         :return: 
         '''
+	print "\n+++++++++++++++++++\nconvert_first_variants_of_son_into_HGVS:"
         print "do not know how to do it"
         
     
